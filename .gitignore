@@ -8,8 +8,15 @@
 out
 gen
 
+<<<<<<< HEAD
 node_modules
 
 .DS_Store
 
+=======
+.DS_Store
+
+node_modules
+
+>>>>>>> feature/nav
 yarn.lock
