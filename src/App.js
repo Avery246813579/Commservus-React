@@ -1,38 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import {bindActionCreators} from 'redux'
-import {connect} from 'react-redux'
-import * as Actions from './actions/index'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import {
-    withRouter
-} from 'react-router-dom'
+import { Provider } from 'react-redux'; 
+import store from './store';
 
-function mapStateToProps(state) {
-    return {user: state.user}
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(Actions, dispatch)
-}
+import Nav from './components/layout/Nav';
+import Landing from './components/layout/Landing';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
+import ForgotPassword from './components/auth/ForgotPassword';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-          <p className="dog">
-              Hi
-          </p>
-      </div>
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App">
+            <Nav />            
+            <Route exact path="/" component={Landing}/>
+            <div className="container">
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/forgot-password" component={ForgotPassword} />
+              {/*<Route path="*" component={FourZeroFour}/>*/}
+            </div>
+          </div>
+        </BrowserRouter>
+      </Provider>
     );
   }
-}
+};
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default App;
