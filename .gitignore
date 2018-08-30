@@ -9,3 +9,7 @@ out
 gen
 
 node_modules
+
+.DS_Store
+
+yarn.lock
