@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-=======
 import { Link } from 'react-router-dom';
->>>>>>> feature/nav
 
 class Nav extends Component {
   render() {
     return (
-<<<<<<< HEAD
-      <div>
-        Nav
-      </div>
-=======
       <nav className="nav">
         <Link to="/" className="nav__brand">
           Commservus
@@ -29,7 +21,6 @@ class Nav extends Component {
           </li>
         </ul>
       </nav>
->>>>>>> feature/nav
     );
   }
 };

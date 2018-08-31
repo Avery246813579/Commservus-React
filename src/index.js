@@ -1,13 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-<<<<<<< HEAD
-import './App.css';
+import './style.css';
 
-ReactDOM.render(<App />, document.getElementById('root');
-=======
-import style from './style.css';
-
-ReactDOM.render(<App />, document.getElementById('root')
-);
->>>>>>> feature/nav
+ReactDOM.render(<App />, document.getElementById('root'));
