@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  box-sizing: border-box;
   font-family: $font-family;
   margin: 0;
   padding: 0;
