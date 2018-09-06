@@ -10,4 +10,11 @@ gen
 
 node_modules
 
+<<<<<<< HEAD
 .DS.Store
+=======
+.DS.Store
+yarn.lock
+build
+package-lock.json
+>>>>>>> 431a1f21ba6d05d9ab0a654c0d0e608e5807f968
