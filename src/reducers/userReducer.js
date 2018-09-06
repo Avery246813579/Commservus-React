@@ -1,6 +1,6 @@
 import {
     UPDATE
-} from "../actions/index";
+} from "../actions/types";
 
 let cloneObject = function (obj) {
     return JSON.parse(JSON.stringify(obj))

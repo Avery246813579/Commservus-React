@@ -1,28 +1,58 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { registerUser } from '../../actions/authActions';
+import { updateSomething } from '../../actions/updateActions';   
+
 import TextFieldGroup from '../common/TextFieldGroup';
-=======
-import TextFieldGroup from '../../modules/common/TextFieldGroup';
->>>>>>> 431a1f21ba6d05d9ab0a654c0d0e608e5807f968
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
-      name: '',
+      firstName: '',
+      lastName: '',
+      username: '',
       email: '',
       password: '',
-      password2: '',
       errors: {}
     };
+
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange (e) {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onSubmit = e => {
+    e.preventDefault();
+
+    const newUser = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    console.log(newUser);
+
+    this.props.registerUser(newUser, this.props.history);
+  }
+
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   render() {
+    const { errors } = this.state;
+
     return (
       <div className="section-register">
         <div className="container">
@@ -31,41 +61,51 @@ class Register extends Component {
             <h1 className="card__heading">Sign Up</h1>
             <p className="card__subheading">Create your Commservus Account</p>
             </div>
-            <form className="form">
+            <form noValidate className="form" onSubmit={this.onSubmit}>
               <TextFieldGroup 
-                placeholder="Name"
-                name="name"
-                label="Organization Name"
-                className="form__input"
-                value={this.state.name}
+                placeholder="First Name"
+                name="firstName"
+                type="text"
+                label="First Name"
+                value={this.state.firstName}
                 onChange={this.onChange}
+                error={errors.firstName}
               />
               <TextFieldGroup 
-                label="Organization Email"
-                placeholder="Email"
-                name="email"
-                type="email"
-                value={this.state.email}
-                className="form__input"
+                placeholder="Last Name"
+                name="lastName"
+                type="text"
+                label="Last Name"
+                value={this.state.lastName}
                 onChange={this.onChange}
+                error={errors.lastName}
               />
               <TextFieldGroup 
-                label="Password"
+                placeholder="Username"
+                name="username"
+                type="text"
+                label="Username"
+                value={this.state.username}
+                onChange={this.onChange}
+                error={errors.username}
+              />
+              <TextFieldGroup 
+                 placeholder="Email"
+                 name="email"
+                 type="email"
+                 label="Email"
+                 value={this.state.email}
+                 onChange={this.onChange}
+                 error={errors.email}
+              />
+              <TextFieldGroup 
                 placeholder="Password"
                 name="password"
                 type="password"
+                label="Password"
                 value={this.state.password}
-                className="form__input"
                 onChange={this.onChange}
-              />
-              <TextFieldGroup
-                label="Confirm Password" 
-                placeholder="Confirm Password"
-                name="password2"
-                type="password"
-                value={this.state.password2}
-                className="form__input"
-                onChange={this.onChange}
+                error={errors.password}
               />
               <div className="form__footer text-center">
                 <input value="Sign up" type="submit" className="btn btn--register" />
@@ -78,4 +118,12 @@ class Register extends Component {
   }
 };
 
-export default Register;
+Register.propTypes = {
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, { registerUser, updateSomething })(withRouter(Register));

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
+
 import TextFieldGroup from '../common/TextFieldGroup';
-=======
-import TextFieldGroup from '../../modules/common/TextFieldGroup';
->>>>>>> 431a1f21ba6d05d9ab0a654c0d0e608e5807f968
 
 class Register extends Component {
   constructor() {
