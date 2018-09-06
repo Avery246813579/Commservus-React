@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import TextFieldGroup from '../../modules/common/TextFieldGroup';
+
+import TextFieldGroup from '../common/TextFieldGroup';
 
 class ForgotPassword extends Component {
   constructor() {
